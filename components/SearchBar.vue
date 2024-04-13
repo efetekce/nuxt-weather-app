@@ -1,30 +1,25 @@
 <script setup>
-const loading = ref(false);
-const searchTerm = reactive({
-  query: "",
-  timeout: null,
-  results: null,
-});
+const weatherStore = useWeatherStore();
 
 const apiKey = "f6038edf8d2a4a7c89701417241104";
 const apiKey2 = "47hAIuP8o8M9RSBosP20WsurcfPSgbAu";
 const handleSearch = () => {
-  clearTimeout(searchTerm.timeout);
-  searchTerm.timeout = setTimeout(async () => {
-    if (searchTerm.query.length >= 3) {
+  clearTimeout(weatherStore.searchTerm.timeout);
+  weatherStore.searchTerm.timeout = setTimeout(async () => {
+    if (weatherStore.searchTerm.query.length >= 3) {
       //http://dataservice.accuweather.com/locations/v1/cities/autocomplete
       // 47hAIuP8o8M9RSBosP20WsurcfPSgbAu
       //       const response =
-      //         await $fetch(`http://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${searchTerm.query}
+      //         await $fetch(`http://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${weatherStore.searchTerm.query}
       // `);
       const response = await $fetch(
-        `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=47hAIuP8o8M9RSBosP20WsurcfPSgbAu&q=${searchTerm.query}`
+        `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=47hAIuP8o8M9RSBosP20WsurcfPSgbAu&q=${weatherStore.searchTerm.query}`
       );
       console.log(response);
       // const data = await response.json();
-      searchTerm.results = response;
+      weatherStore.searchTerm.results = response;
     } else {
-      searchTerm.results = null;
+      weatherStore.searchTerm.results = null;
     }
   }, 1000);
 };
@@ -50,8 +45,6 @@ const getWeather = async (key) => {
   <div>
     hello SearchBar
 
-    {{ searchTerm.query }}
-    {{ searchTerm.results }}
     <form>
       <div class="flex items-center bg-white shadow-lg mx-12 border rounded-lg">
         <i class="p-2 text-indigo-500"><Icon /></i>
@@ -59,7 +52,7 @@ const getWeather = async (key) => {
           type="text"
           placeholder="search for a place"
           class="border-0 p-2 rounded-lg w-full outline-0 focus:ring-2 focus:ring-indigo-500 ring-inset"
-          v-model="searchTerm.query"
+          v-model="weatherStore.searchTerm.query"
           @input="handleSearch"
         />
       </div>
@@ -67,7 +60,7 @@ const getWeather = async (key) => {
 
     <!-- suggestions bar -->
     <div class="bg-amber-400 w-full">
-      <div v-for="result in searchTerm.results" :key="result.Key">
+      <div v-for="result in weatherStore.searchTerm.results" :key="result.Key">
         <button
           class="my-2 px-3 w-full hover:font-bold text-left hover:text-indigo-500"
           @click="getWeather(result.Key)"
