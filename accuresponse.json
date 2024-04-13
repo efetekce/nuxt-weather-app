@@ -1,0 +1,15 @@
+{
+  "Version": 1,
+  "Key": "321609",
+  "Type": "City",
+  "Rank": 45,
+  "LocalizedName": "Eregli",
+  "Country": {
+    "ID": "TR",
+    "LocalizedName": "Türkiye"
+  },
+  "AdministrativeArea": {
+    "ID": "67",
+    "LocalizedName": "Zonguldak"
+  }
+}
