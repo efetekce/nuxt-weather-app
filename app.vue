@@ -15,4 +15,5 @@ const abc = ref(false);
   </div>
 
   <SearchBar />
+  <WeatherCard />
 </template>
