@@ -9,4 +9,9 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  runtimeConfig: {
+    public: {
+      weatherApiKey: process.env.NUXT_PUBLIC_WEATHER_API_KEY,
+    },
+  },
 });

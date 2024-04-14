@@ -1,23 +1,14 @@
 <script setup>
-const { searchTerm, handleSearch, getWeather, places, query } =
-  useWeatherStore();
-
-// const getWeather = async (id) => {
-//   const response =
-//     await $fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=id:${id}&days=3&aqi=no&alerts=no
-// `);
-//   console.log(id);
-//   console.log(response);
-// };
+const { searchTerm, handleSearch, getWeather } = useWeatherStore();
 </script>
 
 <template>
-  <div>
-    hello SearchBar
-    <!-- {{ places }} -->
-    {{ query }}
+  <div class="flex flex-col justify-center w-full">
+    <!-- {{ query }} -->
     <form>
-      <div class="flex items-center bg-white shadow-lg mx-12 border rounded-lg">
+      <div
+        class="flex items-center bg-white shadow-lg mx-auto border rounded-lg w-1/3 lg:w-1/2"
+      >
         <i class="p-2 text-indigo-500"><Icon /></i>
         <input
           type="text"
@@ -30,15 +21,18 @@ const { searchTerm, handleSearch, getWeather, places, query } =
     </form>
 
     <!-- suggestions bar -->
-    <div class="bg-amber-400 w-full">
-      <div v-for="result in searchTerm.results" :key="result.Key">
+    <div class="bg-slate-100 mx-auto rounded-xl w-1/3">
+      <div
+        v-for="result in searchTerm.results"
+        :key="result.id"
+        class="rounded-xl w-full"
+      >
         <button
           class="my-2 px-3 w-full hover:font-bold text-left hover:text-indigo-500"
-          @click="getWeather(result.Key)"
+          @click="getWeather(result.id)"
         >
-          {{ result.LocalizedName }},
-          {{ result.AdministrativeArea.LocalizedName }},
-          {{ result.Country.LocalizedName }}
+          {{ result.name }}, {{ result.region }},
+          {{ result.country }}
         </button>
       </div>
     </div>
