@@ -1,11 +1,11 @@
 <script setup>
 const weatherStore = useWeatherStore();
 const location = computed(() => weatherStore.location);
-console.log(location.value);
+// console.log(location.value);
 
 const target = ref(null);
 onClickOutside(target, (event) => {
-  console.log(event);
+  // console.log(event);
   weatherStore.showModal = false;
 });
 </script>
@@ -16,23 +16,25 @@ onClickOutside(target, (event) => {
     class="relative grid grid-cols-4 bg-slate-700 mx-auto p-12 rounded-xl text-white container"
   >
     <!-- left bar -->
-    <div
-      class="flex flex-col justify-center items-center border-white col-span-1 border-r-2"
-    >
+    <div class="flex flex-col items-center border-white col-span-1 border-r-2">
       <!-- left main card -->
       <div
         class="flex flex-col justify-center items-center border-slate-300 p-4 border-b-2 w-full text-xl"
       >
-        <p class="font-semibold">{{ location.location.name }}</p>
+        <p class="font-semibold">{{ location?.location.name }}</p>
         <p>
           <span v-if="location?.location.region">
             {{ location?.location.region }},</span
           >
           {{ location?.location.country }}
         </p>
+        <img :src="location?.current.condition.icon" class="w-32 h-32" />
+        <p>{{ location?.current.temp_c }} &deg;C</p>
+        <p>{{ location?.current.condition.text }}</p>
+
         <!-- <img :src="location?.current.condition.icon" /> -->
-        <p>{{ location?.current.humidity }}</p>
-        <p>{{ location?.current.temp_c }}</p>
+        <!-- <p>{{ location?.current.humidity }}</p> -->
+        <!-- <p>{{ location?.current.temp_c }}</p> -->
         <p>
           {{
             new Date().toLocaleDateString("en-us", {
@@ -70,7 +72,7 @@ onClickOutside(target, (event) => {
         <section class="flex justify-center items-center">
           <div
             class="flex justify-center items-center space-x-4 p-4"
-            v-for="day in location.forecast.forecastday"
+            v-for="day in location?.forecast.forecastday"
           >
             <ForecastMiniCard :day="day" />
           </div>

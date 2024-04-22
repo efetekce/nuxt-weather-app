@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const weatherStore = useWeatherStore();
-const forecastLocation = computed(() => weatherStore.location.current);
+const forecastLocation = computed(() => weatherStore.location?.current);
 defineProps({
   wind: Boolean,
   precip: Boolean,
@@ -20,35 +20,35 @@ defineProps({
     >
       <!-- <p>{{ forecastLocation.wind_dir }} direction</p> -->
       <p>Wind</p>
-      <p>{{ forecastLocation.wind_kph }} km/h</p>
+      <p>{{ forecastLocation?.wind_kph }} km/h</p>
     </div>
     <div
       v-if="uv"
       class="flex flex-col space-y-2 p-4 font-semibold text-center"
     >
       <p>UV index</p>
-      <p>{{ forecastLocation.uv }}</p>
+      <p>{{ forecastLocation?.uv }}</p>
     </div>
     <div
       v-if="humidity"
       class="flex flex-col space-y-2 p-4 font-semibold text-center"
     >
       <p>Humidity</p>
-      <p>{{ forecastLocation.humidity }}%</p>
+      <p>{{ forecastLocation?.humidity }}%</p>
     </div>
     <div
       v-if="precip"
       class="flex flex-col space-y-2 p-4 font-semibold text-center"
     >
       <p>Precipitation</p>
-      <p>{{ forecastLocation.precip_mm }} mm</p>
+      <p>{{ forecastLocation?.precip_mm }} mm</p>
     </div>
     <div
       v-if="feelslike"
       class="flex flex-col space-y-2 p-4 font-semibold text-center"
     >
       <p>Feels like</p>
-      <p>{{ forecastLocation.feelslike_c }}&deg;</p>
+      <p>{{ forecastLocation?.feelslike_c }}&deg;</p>
     </div>
   </div>
 </template>

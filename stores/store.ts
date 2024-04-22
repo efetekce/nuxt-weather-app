@@ -37,7 +37,7 @@ export const useWeatherStore = defineStore("weather", () => {
       } else {
         searchTerm.results = null;
       }
-    }, 1000);
+    }, 500);
   };
 
   const getWeather = async (id: string | number) => {

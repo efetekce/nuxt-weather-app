@@ -4,12 +4,12 @@ const weatherStore = useWeatherStore();
 
 <template>
   <div
-    class="relative flex flex-col justify-center items-center bg-zinc-700 bg-opacity-90 min-h-screen"
+    class="relative flex flex-col justify-center items-center bg-[url('./bg.jpg')] bg-zinc-700 bg-opacity-90 bg-cover min-h-screen"
   >
     <SearchBar />
     <Transition name="fade">
       <div
-        v-if="weatherStore.showModal"
+        v-show="weatherStore.showModal"
         class="absolute m-auto place-self-center"
       >
         <WeatherDash />
