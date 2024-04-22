@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const weatherStore = useWeatherStore();
 </script>
 
@@ -26,7 +26,7 @@ const weatherStore = useWeatherStore();
 <style>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 1s ease;
+  transition: opacity 1s ease-in-out;
 }
 
 .fade-enter-from,

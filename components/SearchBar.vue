@@ -1,5 +1,7 @@
-<script setup>
-const { searchTerm, handleSearch, getWeather } = useWeatherStore();
+<script setup lang="ts">
+const store = useWeatherStore();
+const searchTerm = computed(() => store.searchTerm);
+const { handleSearch, getWeather } = useWeatherStore();
 </script>
 
 <template>
@@ -12,8 +14,8 @@ const { searchTerm, handleSearch, getWeather } = useWeatherStore();
         <i class="p-2 text-indigo-500"><Icon /></i>
         <input
           type="text"
-          placeholder="search for a place"
-          class="border-0 p-2 rounded-lg w-full outline-0 focus:ring-2 focus:ring-indigo-500 ring-inset"
+          placeholder="start with searching for a place"
+          class="border-0 p-2 rounded-lg w-full outline-0 focus:ring-2 focus:ring-indigo-500 placeholder:text-center transition duration-500 ring-inset"
           v-model="searchTerm.query"
           @input="handleSearch"
         />
@@ -24,15 +26,16 @@ const { searchTerm, handleSearch, getWeather } = useWeatherStore();
     <div class="bg-slate-100 mx-auto rounded-xl w-1/3">
       <div
         v-for="result in searchTerm.results"
-        :key="result.id"
+        :key="result.name"
         class="rounded-xl w-full"
       >
         <button
           class="my-2 px-3 w-full hover:font-bold text-left hover:text-indigo-500"
           @click="getWeather(result.id)"
         >
-          {{ result.name }}, {{ result.region }},
-          {{ result.country }}
+          <span>{{ result.name }}</span>
+          <span v-if="result.region">, {{ result.region }}</span>
+          <span v-if="result.country">, {{ result.country }}</span>
         </button>
       </div>
     </div>
