@@ -4,7 +4,7 @@ const weatherStore = useWeatherStore();
 
 <template>
   <div
-    class="relative flex flex-col justify-center items-center bg-[url('./bg.jpg')] bg-zinc-700 bg-opacity-90 bg-cover min-h-screen animate-[pulse_8s_ease-in-out_infinite]"
+    class="relative flex flex-col justify-center items-center bg-[url('./bg.avif')] bg-cover min-h-screen [pulse_4s_ease-in-out_infinite]"
   >
     <SearchBar />
     <Transition name="fade">
@@ -26,7 +26,7 @@ const weatherStore = useWeatherStore();
 <style>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 1s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .fade-enter-from,

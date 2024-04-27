@@ -13,22 +13,22 @@ onClickOutside(target, (event) => {
 <template>
   <div
     ref="target"
-    class="relative grid grid-cols-4 bg-slate-700 mx-auto p-12 rounded-xl text-white container"
+    class="relative place-items-center gap-x-4 grid grid-cols-4 bg-slate-900 opacity-80 mx-auto p-12 rounded-xl text-white container"
   >
     <!-- left bar -->
-    <div class="flex flex-col items-center border-white col-span-1 border-r-2">
+    <section class="flex flex-col justify-center items-center border-white col-span-1 border-r-2 h-full">
       <!-- left main card -->
       <div
-        class="flex flex-col justify-center items-center border-slate-300 p-4 border-b-2 w-full text-xl"
+        class="flex flex-col justify-center items-center space-y-4 p-8 w-full text-xl"
       >
-        <p class="font-semibold">{{ location?.location.name }}</p>
+        <p class="font-semibold text-2xl">{{ location?.location.name }}</p>
         <p>
           <span v-if="location?.location.region">
             {{ location?.location.region }},</span
           >
-          {{ location?.location.country }}
+          <span class="text-md">{{ location?.location.country }}</span>
         </p>
-        <img :src="location?.current.condition.icon" class="w-32 h-32" />
+        <img :src="location?.current.condition.icon" class="w-24 h-24" />
         <p>{{ location?.current.temp_c }} &deg;C</p>
         <p>{{ location?.current.condition.text }}</p>
 
@@ -46,23 +46,22 @@ onClickOutside(target, (event) => {
           }}
         </p>
       </div>
-      <div>weather data</div>
-      <div>weather data</div>
-    </div>
+      
+    </section>
 
     <!-- right bar -->
 
-    <!-- overview section -->
-    <section class="flex flex-col justify-center items-center col-span-3">
-      <div class="flex flex-col justify-center items-center">
+    <section class="flex flex-col justify-center items-center space-y-12 col-span-3">
+      <!-- overview section -->
+      <div class="flex flex-col justify-center items-center space-y-4">
         <h2 class="font-bold text-2xl">Today's Overview</h2>
-        <section class="flex flex-wrap justify-center items-center gap-4">
+        <section class="flex justify-center items-center space-x-4">
           <OverviewMiniCard wind />
           <OverviewMiniCard humidity />
           <OverviewMiniCard precip />
           <OverviewMiniCard uv />
           <OverviewMiniCard feelslike />
-          <OverviewMiniCard />
+          <!-- <OverviewMiniCard /> -->
         </section>
       </div>
 
@@ -80,7 +79,7 @@ onClickOutside(target, (event) => {
       </div>
     </section>
     <button
-      class="top-4 right-4 absolute"
+      class="top-4 right-4 absolute font-semibold text-2xl"
       @click="weatherStore.showModal = false"
     >
       X

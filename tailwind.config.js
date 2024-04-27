@@ -10,6 +10,9 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily:{
+      'display': ["Open Sans"]
+    }
   },
   plugins: [],
 };
