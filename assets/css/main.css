@@ -2,4 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+.overviewcard > div {
+  @apply space-y-2 flex flex-col justify-center items-center p-4 font-semibold;
+}
+.overviewcard > div > img {
+  @apply outline-dashed;
+}

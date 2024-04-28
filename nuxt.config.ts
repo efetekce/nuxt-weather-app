@@ -12,6 +12,18 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       weatherApiKey: process.env.NUXT_PUBLIC_WEATHER_API_KEY,
+      // motion: {
+      //   directives: {
+      //     breathe: {
+      //       initial: {
+      //         opacity: 1,
+      //       },
+      //       visible: {
+      //         opacity: 0,
+      //       },
+      //     },
+      //   },
+      // },
     },
   },
 });

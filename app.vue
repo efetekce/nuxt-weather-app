@@ -7,6 +7,7 @@ const weatherStore = useWeatherStore();
     class="relative flex flex-col justify-center items-center bg-[url('./bg.avif')] bg-cover min-h-screen [pulse_4s_ease-in-out_infinite]"
   >
     <SearchBar />
+
     <Transition name="fade">
       <div
         v-show="weatherStore.showModal"

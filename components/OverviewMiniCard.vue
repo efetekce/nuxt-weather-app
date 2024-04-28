@@ -12,46 +12,31 @@ defineProps({
 
 <template>
   <div
-    class="flex flex-col justify-center items-center bg-slate-400 bg-opacity-60 hover:bg-opacity-15 p-4 rounded-xl text-white hover:transition duration-500 ring-2 ring-inset"
+    class="flex flex-col justify-center items-center bg-slate-400 bg-opacity-60 hover:bg-opacity-15 p-4 rounded-xl text-center text-white hover:transition duration-500 overviewcard ring-2 ring-inset"
   >
-    <div
-      v-if="wind"
-      class="flex flex-col space-y-2 p-4 font-semibold text-center"
-    >
+    <div v-if="wind">
       <!-- <p>{{ forecastLocation.wind_dir }} direction</p> -->
-      <img src="/wind.svg" class="w-20 h-20 outline-white stroke-white">
+      <img src="/wind.svg" class="w-20 h-20 outline-white stroke-white" />
       <p>Wind</p>
       <p>{{ forecastLocation?.wind_kph }} km/h</p>
     </div>
-    <div
-      v-if="uv"
-      class="flex flex-col space-y-2 p-4 font-semibold text-center"
-    >
-    <img src="/uv.svg" class="w-20 h-20">
+    <div v-if="uv">
+      <img src="/uv.svg" class="w-20 h-20" />
       <p>UV index</p>
       <p>{{ forecastLocation?.uv }}</p>
     </div>
-    <div
-      v-if="humidity"
-      class="flex flex-col space-y-2 p-4 font-semibold text-center"
-    >
-    <img src="/raindrop.svg" class="w-20 h-20 fill-white">
+    <div v-if="humidity">
+      <img src="/raindrop.svg" class="w-20 h-20 fill-white" />
       <p>Humidity</p>
       <p>{{ forecastLocation?.humidity }}%</p>
     </div>
-    <div
-      v-if="precip"
-      class="flex flex-col space-y-2 p-4 font-semibold text-center"
-    >
-    <img src="/rain.svg" class="w-20 h-20">
+    <div v-if="precip">
+      <img src="/rain.svg" class="w-20 h-20" />
       <p>Precipitation</p>
       <p>{{ forecastLocation?.precip_mm }} mm</p>
     </div>
-    <div
-      v-if="feelslike"
-      class="flex flex-col space-y-2 p-4 font-semibold text-center"
-    >
-    <img src="/feelslike.svg" class="w-20 h-20">
+    <div v-if="feelslike">
+      <img src="/feelslike.svg" class="w-20 h-20" />
       <p>Feels like</p>
       <p>{{ Math.round(forecastLocation?.feelslike_c) }}&deg;</p>
     </div>

@@ -16,7 +16,9 @@ onClickOutside(target, (event) => {
     class="relative place-items-center gap-x-4 grid grid-cols-4 bg-slate-900 opacity-80 mx-auto p-12 rounded-xl text-white container"
   >
     <!-- left bar -->
-    <section class="flex flex-col justify-center items-center border-white col-span-1 border-r-2 h-full">
+    <section
+      class="flex flex-col justify-center items-center border-white col-span-1 border-r-2 h-full"
+    >
       <!-- left main card -->
       <div
         class="flex flex-col justify-center items-center space-y-4 p-8 w-full text-xl"
@@ -45,13 +47,23 @@ onClickOutside(target, (event) => {
             })
           }}
         </p>
+        <p>
+          <span></span>
+          {{
+            new Date(location?.location.localtime).toLocaleTimeString("en-us", {
+              hour: "numeric",
+              minute: "2-digit",
+            })
+          }}
+        </p>
       </div>
-      
     </section>
 
     <!-- right bar -->
 
-    <section class="flex flex-col justify-center items-center space-y-12 col-span-3">
+    <section
+      class="flex flex-col justify-center items-center space-y-12 col-span-3"
+    >
       <!-- overview section -->
       <div class="flex flex-col justify-center items-center space-y-4">
         <h2 class="font-bold text-2xl">Today's Overview</h2>
