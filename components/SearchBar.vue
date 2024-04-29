@@ -5,7 +5,7 @@ const showModal = computed(() => store.showModal);
 const { handleSearch, getWeather } = useWeatherStore();
 
 const animatedDiv = ref<HTMLElement>();
-const { apply } = useMotion(animatedDiv, {
+const { apply, set } = useMotion(animatedDiv, {
   initial: {
     scale: 1,
     opacity: 0.55,
@@ -19,6 +19,13 @@ const { apply } = useMotion(animatedDiv, {
       duration: 1500,
     },
   },
+  reset: {
+    scale: 1,
+    opacity: 0.55,
+    transition: {
+      duration: 500,
+    },
+  },
 });
 const handleAnimation = async () => {
   await apply({
@@ -27,6 +34,11 @@ const handleAnimation = async () => {
     transition: { type: "spring", damping: 25 },
   });
 };
+
+onClickOutside(animatedDiv, async (event) => {
+  await apply("reset");
+  await apply("visible");
+});
 </script>
 
 <template>

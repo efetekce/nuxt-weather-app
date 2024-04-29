@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import FeelIcon from "./icons/FeelIcon.vue";
+import HumidIcon from "./icons/HumidIcon.vue";
+import RainIcon from "./icons/RainIcon.vue";
+import UVIcon from "./icons/UVIcon.vue";
+import WindIcon from "./icons/WindIcon.vue";
+
 const weatherStore = useWeatherStore();
 const forecastLocation = computed(() => weatherStore.location?.current);
 defineProps({
@@ -16,27 +22,31 @@ defineProps({
   >
     <div v-if="wind">
       <!-- <p>{{ forecastLocation.wind_dir }} direction</p> -->
-      <img src="/wind.svg" class="w-20 h-20 outline-white stroke-white" />
+      <WindIcon />
       <p>Wind</p>
       <p>{{ forecastLocation?.wind_kph }} km/h</p>
     </div>
     <div v-if="uv">
-      <img src="/uv.svg" class="w-20 h-20" />
+      <!-- <img src="/uv.svg" class="w-20 h-20" /> -->
+      <UVIcon />
       <p>UV index</p>
       <p>{{ forecastLocation?.uv }}</p>
     </div>
     <div v-if="humidity">
-      <img src="/raindrop.svg" class="w-20 h-20 fill-white" />
+      <!-- <img src="/raindrop.svg" class="w-20 h-20 fill-white" /> -->
+      <HumidIcon />
       <p>Humidity</p>
       <p>{{ forecastLocation?.humidity }}%</p>
     </div>
     <div v-if="precip">
-      <img src="/rain.svg" class="w-20 h-20" />
+      <!-- <img src="/rain.svg" class="w-20 h-20" /> -->
+      <RainIcon />
       <p>Precipitation</p>
       <p>{{ forecastLocation?.precip_mm }} mm</p>
     </div>
     <div v-if="feelslike">
-      <img src="/feelslike.svg" class="w-20 h-20" />
+      <!-- <img src="/feelslike.svg" class="w-20 h-20" /> -->
+      <FeelIcon />
       <p>Feels like</p>
       <p>{{ Math.round(forecastLocation?.feelslike_c) }}&deg;</p>
     </div>
