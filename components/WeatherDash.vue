@@ -30,13 +30,22 @@ onClickOutside(target, (event) => {
           >
           <span class="text-md">{{ location?.location.country }}</span>
         </p>
-        <img :src="location?.current.condition.icon" class="w-24 h-24" />
-        <p>{{ location?.current.temp_c }} &deg;C</p>
-        <p>{{ location?.current.condition.text }}</p>
+        <div class="flex justify-center items-center space-x-4">
+          <img :src="location?.current.condition.icon" class="w-24 h-24" />
+          <p class="flex flex-col mt-2 text-center">
+            <span>{{ Math.round(location?.current.temp_c) }} &deg;C</span>
+            <span>{{ location?.current.condition.text }}</span>
+          </p>
+        </div>
 
-        <!-- <img :src="location?.current.condition.icon" /> -->
-        <!-- <p>{{ location?.current.humidity }}</p> -->
-        <!-- <p>{{ location?.current.temp_c }}</p> -->
+        <p>
+          {{
+            new Date(location?.location.localtime).toLocaleTimeString("en-us", {
+              hour: "numeric",
+              minute: "2-digit",
+            })
+          }}
+        </p>
         <p>
           {{
             new Date().toLocaleDateString("en-us", {
@@ -44,15 +53,6 @@ onClickOutside(target, (event) => {
               year: "numeric",
               month: "long",
               day: "numeric",
-            })
-          }}
-        </p>
-        <p>
-          <span></span>
-          {{
-            new Date(location?.location.localtime).toLocaleTimeString("en-us", {
-              hour: "numeric",
-              minute: "2-digit",
             })
           }}
         </p>

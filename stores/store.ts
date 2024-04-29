@@ -21,19 +21,18 @@ export const useWeatherStore = defineStore("weather", () => {
 
   // const forecast = ref<null | WeatherAllForecastResponse>(null);
   const showModal = ref(false);
-
+  const showSuggestionBar = ref(false);
   const handleSearch = () => {
     clearTimeout(searchTerm.timeout);
     searchTerm.timeout = setTimeout(async () => {
       if (searchTerm.query.length >= 3) {
-        // const response: City[] = await $fetch(
-        //   `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=47hAIuP8o8M9RSBosP20WsurcfPSgbAu&q=${searchTerm.query}`
         const response: City[] = await $fetch(
-          `http://api.weatherapi.com/v1/search.json?key=f6038edf8d2a4a7c89701417241104&q=${searchTerm.query}`
+          `https://api.weatherapi.com/v1/search.json?key=f6038edf8d2a4a7c89701417241104&q=${searchTerm.query}`
         );
         console.log(response);
         searchTerm.results = response;
         console.log(searchTerm.results);
+        showSuggestionBar.value = true;
       } else {
         searchTerm.results = null;
       }
@@ -42,7 +41,7 @@ export const useWeatherStore = defineStore("weather", () => {
 
   const getWeather = async (id: string | number) => {
     const response: WeatherResponse = await $fetch(
-      `http://api.weatherapi.com/v1/forecast.json?key=f6038edf8d2a4a7c89701417241104&q=id:${id}&days=5&aqi=no&alerts=no`
+      `https://api.weatherapi.com/v1/forecast.json?key=f6038edf8d2a4a7c89701417241104&q=id:${id}&days=5&aqi=no&alerts=no`
     );
 
     console.log(response);
@@ -71,6 +70,7 @@ export const useWeatherStore = defineStore("weather", () => {
     places,
     location,
     showModal,
+    showSuggestionBar,
     query: searchTerm.query,
   };
 });

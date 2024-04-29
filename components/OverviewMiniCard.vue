@@ -21,31 +21,26 @@ defineProps({
     class="flex flex-col justify-center items-center bg-slate-400 bg-opacity-60 hover:bg-opacity-15 p-4 rounded-xl text-center text-white hover:transition duration-500 overviewcard ring-2 ring-inset"
   >
     <div v-if="wind">
-      <!-- <p>{{ forecastLocation.wind_dir }} direction</p> -->
       <WindIcon />
       <p>Wind</p>
       <p>{{ forecastLocation?.wind_kph }} km/h</p>
     </div>
     <div v-if="uv">
-      <!-- <img src="/uv.svg" class="w-20 h-20" /> -->
       <UVIcon />
       <p>UV index</p>
       <p>{{ forecastLocation?.uv }}</p>
     </div>
     <div v-if="humidity">
-      <!-- <img src="/raindrop.svg" class="w-20 h-20 fill-white" /> -->
       <HumidIcon />
       <p>Humidity</p>
       <p>{{ forecastLocation?.humidity }}%</p>
     </div>
     <div v-if="precip">
-      <!-- <img src="/rain.svg" class="w-20 h-20" /> -->
       <RainIcon />
       <p>Precipitation</p>
       <p>{{ forecastLocation?.precip_mm }} mm</p>
     </div>
     <div v-if="feelslike">
-      <!-- <img src="/feelslike.svg" class="w-20 h-20" /> -->
       <FeelIcon />
       <p>Feels like</p>
       <p>{{ Math.round(forecastLocation?.feelslike_c) }}&deg;</p>
