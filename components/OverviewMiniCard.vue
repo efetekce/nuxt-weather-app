@@ -18,7 +18,7 @@ defineProps({
 
 <template>
   <div
-    class="flex flex-col justify-center items-center bg-slate-400 bg-opacity-60 hover:bg-opacity-15 p-4 rounded-xl text-center text-white hover:transition duration-500 overviewcard ring-2 ring-inset"
+    class="flex justify-center items-center bg-slate-400 bg-opacity-60 hover:bg-opacity-15 xl:p-4 rounded-xl text-center text-white hover:transition duration-500 overviewcard ring-2 ring-inset"
   >
     <div v-if="wind">
       <WindIcon />
@@ -40,7 +40,7 @@ defineProps({
       <p>Precipitation</p>
       <p>{{ forecastLocation?.precip_mm }} mm</p>
     </div>
-    <div v-if="feelslike">
+    <div v-if="feelslike" class="-center">
       <FeelIcon />
       <p>Feels like</p>
       <p>{{ Math.round(forecastLocation?.feelslike_c) }}&deg;</p>

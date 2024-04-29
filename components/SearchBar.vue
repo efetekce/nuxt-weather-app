@@ -50,7 +50,7 @@ onClickOutside(animatedDiv, async (event) => {
       <div
         ref="animatedDiv"
         @click="handleAnimation"
-        class="flex items-center bg-gray-300 shadow-lg mx-auto border rounded-lg w-1/4 lg:w-1/3"
+        class="flex items-center bg-gray-300 shadow-lg mx-auto border rounded-lg w-1/2 lg:w-1/3"
       >
         <i class="p-2 text-indigo-500"><Icon /></i>
         <input
@@ -65,20 +65,18 @@ onClickOutside(animatedDiv, async (event) => {
     <!-- suggestions bar -->
 
     <div
-      class="bg-slate-100 mx-auto mt-2 rounded-xl w-1/3"
+      class="bg-slate-100 mx-auto mt-2 rounded-xl w-1/2 lg:w-1/3 text-center"
       v-show="showSuggestionBar"
-      :initial="{ opacity: 0 }"
-      :visible="{ opacity: 1 }"
-      :duration="500"
     >
+      <p v-if="searchTerm.results?.length === 0">No results found.</p>
       <div
         v-for="result in searchTerm.results"
         :key="result.name"
         class="rounded-xl w-full"
-        v-motion
+        v-motion-fade
       >
         <button
-          class="my-2 px-3 w-full hover:font-bold text-left hover:text-indigo-500"
+          class="my-2 px-3 w-full hover:font-semibold text-center hover:text-indigo-500"
           @click="getWeather(result.id)"
         >
           <span>{{ result.name }}</span>

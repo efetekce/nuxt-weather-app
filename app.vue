@@ -4,7 +4,7 @@ const weatherStore = useWeatherStore();
 
 <template>
   <div
-    class="relative flex flex-col justify-center items-center bg-[url('./bg.avif')] bg-cover min-h-screen [pulse_4s_ease-in-out_infinite]"
+    class="relative flex flex-col justify-center items-center bg-[url('./bg.avif')] bg-cover bg-center min-h-screen"
   >
     <SearchBar />
 
@@ -17,11 +17,6 @@ const weatherStore = useWeatherStore();
       </div>
     </Transition>
   </div>
-  <!-- <div class="gap-4 grid grid-cols-2 w-full">
-    <div v-for="place in places" :key="place.location.name">
-      <WeatherCard :place="place" />
-    </div>
-  </div> -->
 </template>
 
 <style>

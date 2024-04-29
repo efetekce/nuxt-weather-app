@@ -13,11 +13,11 @@ onClickOutside(target, (event) => {
 <template>
   <div
     ref="target"
-    class="relative place-items-center gap-x-4 grid grid-cols-4 bg-slate-900 opacity-80 mx-auto p-12 rounded-xl text-white container"
+    class="relative place-items-center lg:gap-x-4 grid grid-cols-1 lg:grid-cols-4 bg-slate-900 opacity-80 m-auto lg:p-12 rounded-xl text-white container"
   >
     <!-- left bar -->
     <section
-      class="flex flex-col justify-center items-center border-white col-span-1 border-r-2 h-full"
+      class="flex flex-col justify-center items-center border-white col-span-1 lg:border-r-2 h-full text-center"
     >
       <!-- left main card -->
       <div
@@ -30,9 +30,9 @@ onClickOutside(target, (event) => {
           >
           <span class="text-md">{{ location?.location.country }}</span>
         </p>
-        <div class="flex justify-center items-center space-x-4">
+        <div class="flex justify-center items-center space-x-2">
           <img :src="location?.current.condition.icon" class="w-24 h-24" />
-          <p class="flex flex-col mt-2 text-center">
+          <p class="flex flex-col text-center">
             <span>{{ Math.round(location?.current.temp_c) }} &deg;C</span>
             <span>{{ location?.current.condition.text }}</span>
           </p>
@@ -67,31 +67,32 @@ onClickOutside(target, (event) => {
       <!-- overview section -->
       <div class="flex flex-col justify-center items-center space-y-4">
         <h2 class="font-bold text-2xl">Today's Overview</h2>
-        <section class="flex justify-center items-center space-x-4">
+        <section
+          class="lg:flex justify-center items-center gap-4 grid grid-cols-2"
+        >
           <OverviewMiniCard wind />
           <OverviewMiniCard humidity />
           <OverviewMiniCard precip />
           <OverviewMiniCard uv />
-          <OverviewMiniCard feelslike />
-          <!-- <OverviewMiniCard /> -->
+          <OverviewMiniCard feelslike class="col-span-2" />
         </section>
       </div>
 
       <!-- forecast section -->
       <div class="flex flex-col justify-center items-center">
         <h2 class="font-bold text-2xl tracking-wide">This week</h2>
-        <section class="flex justify-center items-center">
-          <div
-            class="flex justify-center items-center space-x-4 p-4"
+        <section
+          class="flex justify-between items-center space-x-4 lg:space-x-8 p-4"
+        >
+          <ForecastMiniCard
             v-for="day in location?.forecast.forecastday"
-          >
-            <ForecastMiniCard :day="day" />
-          </div>
+            :day="day"
+          />
         </section>
       </div>
     </section>
     <button
-      class="top-4 right-4 absolute font-semibold text-2xl"
+      class="top-8 lg:top-4 right-8 lg:right-4 absolute font-semibold text-2xl"
       @click="weatherStore.showModal = false"
     >
       X

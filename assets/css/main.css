@@ -7,6 +7,3 @@
 .overviewcard > div {
   @apply space-y-2 flex flex-col justify-center items-center p-4 font-semibold;
 }
-.overviewcard > div > img {
-  @apply outline-dashed;
-}
