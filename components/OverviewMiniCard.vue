@@ -18,12 +18,12 @@ defineProps({
 
 <template>
   <div
-    class="flex justify-center items-center bg-slate-400 bg-opacity-60 hover:bg-opacity-15 xl:p-4 rounded-xl text-center text-white hover:transition duration-500 overviewcard ring-2 ring-inset"
+    class="flex justify-center items-center bg-slate-400/60 hover:bg-slate-300/90 xl:p-4 rounded-xl text-center text-white hover:text-black transition duration-500 outline outline-blue-400/20 overviewcard"
   >
     <div v-if="wind">
       <WindIcon />
       <p>Wind</p>
-      <p>{{ forecastLocation?.wind_kph }} km/h</p>
+      <p>{{ Math.round(forecastLocation?.wind_kph) }} km/h</p>
     </div>
     <div v-if="uv">
       <UVIcon />

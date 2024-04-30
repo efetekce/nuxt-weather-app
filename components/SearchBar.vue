@@ -38,6 +38,11 @@ const handleAnimation = async () => {
 onClickOutside(animatedDiv, async (event) => {
   store.showSuggestionBar = false;
   store.searchTerm.query = "";
+  // if (showModal) {
+  //   await new Promise((pro) => setTimeout(pro, 5000));
+  //   await apply("reset");
+  //   await apply("enter");
+  // }
   await apply("reset");
   await apply("enter");
 });
