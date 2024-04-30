@@ -13,11 +13,11 @@ onClickOutside(target, (event) => {
 <template>
   <div
     ref="target"
-    class="relative place-items-center lg:gap-x-4 grid grid-cols-1 lg:grid-cols-4 bg-slate-900 opacity-80 m-auto lg:p-12 rounded-xl text-white container"
+    class="relative grid grid-cols-1 lg:grid-cols-4 bg-slate-900/80 p-4 lg:p-8 rounded-xl text-white"
   >
     <!-- left bar -->
     <section
-      class="flex flex-col justify-center items-center border-white col-span-1 lg:border-r-2 h-full text-center"
+      class="flex flex-col justify-center items-center border-white lg:border-r-2 h-full text-center"
     >
       <!-- left main card -->
       <div
@@ -79,14 +79,13 @@ onClickOutside(target, (event) => {
       </div>
 
       <!-- forecast section -->
-      <div class="flex flex-col justify-center items-center">
+      <div class="flex flex-col justify-center items-center p-4">
         <h2 class="font-bold text-2xl tracking-wide">This week</h2>
-        <section
-          class="flex justify-between items-center space-x-4 lg:space-x-8 p-4"
-        >
+        <section class="gap-4 grid grid-cols-2 lg:grid-cols-3">
           <ForecastMiniCard
             v-for="day in location?.forecast.forecastday"
             :day="day"
+            class="lg:first:col-span-1 first:col-span-2"
           />
         </section>
       </div>
@@ -99,5 +98,3 @@ onClickOutside(target, (event) => {
     </button>
   </div>
 </template>
-
-<style scoped></style>

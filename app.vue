@@ -4,17 +4,13 @@ const weatherStore = useWeatherStore();
 
 <template>
   <div
-    class="relative flex flex-col justify-center items-center bg-[url('./bg.avif')] bg-cover bg-center min-h-screen"
+    class="relative place-items-center grid bg-[url('./bg.avif')] bg-cover bg-center p-4 min-h-dvh"
   >
-    <SearchBar />
-
+    <Transition name="searchbarFade">
+      <SearchBar v-if="!weatherStore.showModal" />
+    </Transition>
     <Transition name="fade">
-      <div
-        v-show="weatherStore.showModal"
-        class="absolute m-auto place-self-center"
-      >
-        <WeatherDash />
-      </div>
+      <WeatherDash v-if="weatherStore.showModal" />
     </Transition>
   </div>
 </template>
@@ -22,11 +18,20 @@ const weatherStore = useWeatherStore();
 <style>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .fade-enter-from,
 .fade-leave-to {
+  opacity: 0;
+}
+
+.searchbarFade-enter-active {
+  transition: opacity 2.5s ease-in-out;
+}
+
+.searchbarFade-enter-from,
+.searchbarFade-leave-to {
   opacity: 0;
 }
 </style>

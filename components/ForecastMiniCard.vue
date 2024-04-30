@@ -8,7 +8,7 @@ defineProps<Props>();
 
 <template>
   <div
-    class="flex flex-col justify-center items-center bg-slate-400 hover:bg-slate-300 py-24 rounded-xl w-36 h-48 text-center hover:text-slate-700 duration-500 ring-2 ring-blue-300 ring-inset"
+    class="flex flex-col justify-center items-center bg-slate-400 hover:bg-slate-300 py-24 rounded-xl max-h-48 text-center hover:text-slate-700 duration-500 ring-2 ring-blue-300 ring-inset"
   >
     <p class="font-bold tracking-wide">
       {{

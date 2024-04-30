@@ -10,7 +10,7 @@ const { apply } = useMotion(animatedDiv, {
     scale: 1,
     opacity: 0.55,
   },
-  visible: {
+  enter: {
     scale: 1.2,
     opacity: 1,
     transition: {
@@ -39,24 +39,25 @@ onClickOutside(animatedDiv, async (event) => {
   store.showSuggestionBar = false;
   store.searchTerm.query = "";
   await apply("reset");
-  await apply("visible");
+  await apply("enter");
 });
 </script>
 
 <template>
-  <div v-show="!showModal" class="flex flex-col justify-center w-full">
+  <!-- container -->
+  <div v-if="!showModal" class="flex flex-col justify-center w-3/4 lg:w-1/3">
     <!-- {{ query }} -->
     <form>
       <div
         ref="animatedDiv"
         @click="handleAnimation"
-        class="flex items-center bg-gray-300 shadow-lg mx-auto border rounded-lg w-1/2 lg:w-1/3"
+        class="flex items-center bg-gray-300 shadow-lg mx-auto border rounded-lg w-full"
       >
         <i class="p-2 text-indigo-500"><Icon /></i>
         <input
           type="text"
           placeholder="start with searching for a place"
-          class="border-0 bg-gray-300 p-2 rounded-lg w-full duration-500 outline-0 focus:ring-2 focus:ring-indigo-500 placeholder:text-center transition ring-inset"
+          class="flex-grow border-0 bg-gray-300 p-2 rounded-lg w-full placeholder:lg:text-lg placeholder:text-center placeholder:text-sm transition duration-500 outline-0 focus:ring-2 focus:ring-indigo-500 ring-inset"
           v-model="searchTerm.query"
           @input="handleSearch"
         />
@@ -65,8 +66,8 @@ onClickOutside(animatedDiv, async (event) => {
     <!-- suggestions bar -->
 
     <div
-      class="bg-slate-100 mx-auto mt-2 rounded-xl w-1/2 lg:w-1/3 text-center"
-      v-show="showSuggestionBar"
+      class="bg-slate-100 mx-auto mt-2 rounded-xl w-full text-center"
+      v-if="showSuggestionBar"
     >
       <p v-if="searchTerm.results?.length === 0">No results found.</p>
       <div
@@ -87,16 +88,3 @@ onClickOutside(animatedDiv, async (event) => {
     </div>
   </div>
 </template>
-
-<style>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 12s ease-out;
-  opacity: 1;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>
