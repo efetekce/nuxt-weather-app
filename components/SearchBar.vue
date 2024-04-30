@@ -1,10 +1,12 @@
 <script setup lang="ts">
 const store = useWeatherStore();
 const searchTerm = computed(() => store.searchTerm);
-const showModal = computed(() => store.showModal);
+const showDashboard = computed(() => store.showDashboard);
 const { handleSearch, getWeather } = useWeatherStore();
 const showSuggestionBar = computed(() => store.showSuggestionBar);
+
 const animatedDiv = ref<HTMLElement>();
+
 const { apply } = useMotion(animatedDiv, {
   initial: {
     scale: 1,
@@ -38,11 +40,7 @@ const handleAnimation = async () => {
 onClickOutside(animatedDiv, async (event) => {
   store.showSuggestionBar = false;
   store.searchTerm.query = "";
-  // if (showModal) {
-  //   await new Promise((pro) => setTimeout(pro, 5000));
-  //   await apply("reset");
-  //   await apply("enter");
-  // }
+
   await apply("reset");
   await apply("enter");
 });
@@ -50,12 +48,11 @@ onClickOutside(animatedDiv, async (event) => {
 
 <template>
   <!-- container -->
-  <div v-if="!showModal" class="flex flex-col justify-center w-3/4 lg:w-1/3">
+  <div class="flex flex-col justify-center">
     <!-- {{ query }} -->
     <form>
       <div
         ref="animatedDiv"
-        @click="handleAnimation"
         class="flex items-center bg-gray-300 shadow-lg mx-auto border rounded-lg w-full"
       >
         <i class="p-2 text-indigo-500"><Icon /></i>
@@ -65,6 +62,7 @@ onClickOutside(animatedDiv, async (event) => {
           class="flex-grow border-0 bg-gray-300 p-2 rounded-lg w-full placeholder:lg:text-lg placeholder:text-center placeholder:text-sm transition duration-500 outline-0 focus:ring-2 focus:ring-indigo-500 ring-inset"
           v-model="searchTerm.query"
           @input="handleSearch"
+          @click="handleAnimation"
         />
       </div>
     </form>

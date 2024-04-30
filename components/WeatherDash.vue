@@ -6,7 +6,7 @@ const location = computed(() => weatherStore.location);
 const target = ref(null);
 onClickOutside(target, (event) => {
   // console.log(event);
-  weatherStore.showModal = false;
+  weatherStore.showDashboard = false;
 });
 </script>
 
@@ -92,7 +92,7 @@ onClickOutside(target, (event) => {
     </section>
     <button
       class="top-8 lg:top-4 right-8 lg:right-4 absolute font-semibold text-2xl"
-      @click="weatherStore.showModal = false"
+      @click="weatherStore.showDashboard = false"
     >
       X
     </button>

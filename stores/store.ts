@@ -15,13 +15,14 @@ export const useWeatherStore = defineStore("weather", () => {
     results: null,
   });
 
-  const places = ref([]);
+  const showSearchBar = ref(true);
+  const showSuggestionBar = ref(false);
+  const showDashboard = ref(false);
 
+  // const places = ref([]);
   const location = ref<null | WeatherResponse>(null);
 
   // const forecast = ref<null | WeatherAllForecastResponse>(null);
-  const showModal = ref(false);
-  const showSuggestionBar = ref(false);
   const handleSearch = () => {
     clearTimeout(searchTerm.timeout);
     searchTerm.timeout = setTimeout(async () => {
@@ -33,8 +34,6 @@ export const useWeatherStore = defineStore("weather", () => {
         searchTerm.results = response;
         console.log(searchTerm.results);
         showSuggestionBar.value = true;
-      } else {
-        searchTerm.results = null;
       }
     }, 500);
   };
@@ -51,7 +50,9 @@ export const useWeatherStore = defineStore("weather", () => {
     searchTerm.results = null;
     location.value = response;
     console.log(location.value);
-    showModal.value = true;
+    showSearchBar.value = false;
+    showSuggestionBar.value = false;
+    showDashboard.value = true;
   };
 
   // const getWeatherForecast = async (id: string | number) => {
@@ -67,10 +68,9 @@ export const useWeatherStore = defineStore("weather", () => {
     searchTerm,
     handleSearch,
     getWeather,
-    places,
     location,
-    showModal,
+    showDashboard,
     showSuggestionBar,
-    query: searchTerm.query,
+    showSearchBar,
   };
 });
