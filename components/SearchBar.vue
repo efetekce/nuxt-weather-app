@@ -58,7 +58,7 @@ onClickOutside(animatedDiv, async (event) => {
         <i class="p-2 text-indigo-500"><Icon /></i>
         <input
           type="text"
-          placeholder="start with searching for a place"
+          placeholder="start with searching for a location"
           class="flex-grow border-0 bg-gray-300 p-2 rounded-lg w-full placeholder:lg:text-lg placeholder:text-center placeholder:text-sm transition duration-500 outline-0 focus:ring-2 focus:ring-indigo-500 ring-inset"
           v-model="searchTerm.query"
           @input="handleSearch"
