@@ -28,7 +28,8 @@ export const useWeatherStore = defineStore("weather", () => {
     searchTerm.timeout = setTimeout(async () => {
       if (searchTerm.query.length >= 3) {
         const response: City[] = await $fetch(
-          `https://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${searchTerm.query}`
+          `https://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${searchTerm.query}`,
+          { mode: "no-cors" }
         );
         console.log(response);
         searchTerm.results = response;
@@ -40,7 +41,8 @@ export const useWeatherStore = defineStore("weather", () => {
 
   const getWeather = async (id: string | number) => {
     const response: WeatherResponse = await $fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=id:${id}&days=5&aqi=no&alerts=no`
+      `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=id:${id}&days=5&aqi=no&alerts=no`,
+      { mode: "no-cors" }
     );
 
     console.log(response);
