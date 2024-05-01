@@ -50,7 +50,7 @@ onClickOutside(animatedDiv, async (event) => {
   <!-- container -->
   <div class="flex flex-col justify-center">
     <!-- {{ query }} -->
-    <form>
+    <form @submit.prevent>
       <div
         ref="animatedDiv"
         class="flex items-center bg-gray-300 shadow-lg mx-auto border rounded-lg w-full"
