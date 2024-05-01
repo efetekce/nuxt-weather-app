@@ -81,7 +81,9 @@ onClickOutside(target, (event) => {
       <!-- forecast section -->
       <div class="flex flex-col justify-center items-center space-y-4 p-4">
         <h2 class="font-bold text-2xl tracking-wide">This week</h2>
-        <section class="gap-4 grid grid-cols-2 lg:grid-cols-3">
+        <section
+          class="gap-4 grid grid-cols-2 lg:grid-cols-3 max-w-[275px] lg:max-w-max"
+        >
           <ForecastMiniCard
             v-for="day in location?.forecast.forecastday"
             :day="day"
